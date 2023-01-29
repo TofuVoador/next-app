@@ -13,10 +13,13 @@ export default function Home() {
   }
 
   const getAztro = () => {
+    setAztro('')
+    document.getElementById('load').style.display = 'block';
     fetch('https://aztro.sameerkumar.website/?sign='+sign+'&day=today', {
       method: "POST"
     }).then(resp => resp.json())
     .then(dados => setAztro(dados))
+    .then(() => document.getElementById('load').style.display = 'none')
   }
 
   return (
@@ -42,11 +45,12 @@ export default function Home() {
         </div>
         <div className={styles.horoscope}>
           <div className={styles.date}>
+            <h1 id='load'>LOADING...</h1>
             <h1>{aztro.current_date}</h1>
           </div>
           <div className={styles.lucky}>
             <h2>Color: {aztro.color}</h2>
-            <h2>Lucky Time: {aztro.lucky_time}</h2>
+            <h2> Lucky Time: {aztro.lucky_time}</h2>
             <h2>Lucky Number: {aztro.lucky_number}</h2>
             <h2>Mood: {aztro.mood}</h2>
           </div>
@@ -55,8 +59,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id='about'>
-
+      <section id='about' className={styles.about}>
+        <div>
+          <h1>About</h1>
+          <p>System created by Gustavo Amamia Kumagai. 
+            It consumes the Aztro API to show a simple horoscope. 
+            It is my first application using Next.JS</p>
+        </div>
       </section>
       <section id='contact'>
         

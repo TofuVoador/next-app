@@ -1,5 +1,12 @@
 .navbar {
+  display: flex;
+  position: fixed;
   height: 10vh;
+  width: 100vw;
+}
+
+.navbarContent {
+  width: 100%;
   padding: 1rem 10rem;
   display: flex;
   justify-content: space-around;
