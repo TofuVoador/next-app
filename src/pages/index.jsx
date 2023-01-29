@@ -5,17 +5,11 @@ import { useState } from 'react'
 export default function Home() {
 
   const [aztro, setAztro] = useState({});
-  const [sign, setSign] = useState('');
 
-  const clickSign = (s) => {
-    setSign(s)
-    getAztro()
-  }
-
-  const getAztro = () => {
+  const getAztro = (s) => {
     setAztro('')
     document.getElementById('load').style.display = 'block';
-    fetch('https://aztro.sameerkumar.website/?sign='+sign+'&day=today', {
+    fetch('https://aztro.sameerkumar.website/?sign='+s+'&day=today', {
       method: "POST"
     }).then(resp => resp.json())
     .then(dados => setAztro(dados))
@@ -29,23 +23,23 @@ export default function Home() {
         <div className={styles.selectSign}>
           <h1>Select your Sign</h1>
           <div className={styles.signOptions}>
-            <p onClick={() => {clickSign('aries')}}>Aries</p>
-            <p onClick={() => {clickSign('taurus')}}>Taurus</p>
-            <p onClick={() => {clickSign('gemini')}}>Gemini</p>
-            <p onClick={() => {clickSign('cancer')}}>Cancer</p>
-            <p onClick={() => {clickSign('leo')}}>Leo</p>
-            <p onClick={() => {clickSign('virgo')}}>Virgo</p>
-            <p onClick={() => {clickSign('libra')}}>Libra</p>
-            <p onClick={() => {clickSign('scorpio')}}>Scorpio</p>
-            <p onClick={() => {clickSign('sagittarius')}}>Sagittarius</p>
-            <p onClick={() => {clickSign('capricorn')}}>Capricorn</p>
-            <p onClick={() => {clickSign('araquariusies')}}>Aquarius</p>
-            <p onClick={() => {clickSign('pisces')}}>Pisces</p>
+            <p onClick={() => {getAztro('aries')}}>Aries</p>
+            <p onClick={() => {getAztro('taurus')}}>Taurus</p>
+            <p onClick={() => {getAztro('gemini')}}>Gemini</p>
+            <p onClick={() => {getAztro('cancer')}}>Cancer</p>
+            <p onClick={() => {getAztro('leo')}}>Leo</p>
+            <p onClick={() => {getAztro('virgo')}}>Virgo</p>
+            <p onClick={() => {getAztro('libra')}}>Libra</p>
+            <p onClick={() => {getAztro('scorpio')}}>Scorpio</p>
+            <p onClick={() => {getAztro('sagittarius')}}>Sagittarius</p>
+            <p onClick={() => {getAztro('capricorn')}}>Capricorn</p>
+            <p onClick={() => {getAztro('araquariusies')}}>Aquarius</p>
+            <p onClick={() => {getAztro('pisces')}}>Pisces</p>
           </div>
         </div>
         <div className={styles.horoscope}>
           <div className={styles.date}>
-            <h1 id='load'>LOADING...</h1>
+            <h1 id='load' style={{'display': 'none'}}>LOADING...</h1>
             <h1>{aztro.current_date}</h1>
           </div>
           <div className={styles.lucky}>
@@ -62,13 +56,16 @@ export default function Home() {
       <section id='about' className={styles.about}>
         <div>
           <h1>About</h1>
-          <p>System created by Gustavo Amamia Kumagai. 
-            It consumes the Aztro API to show a simple horoscope. 
-            It is my first application using Next.JS</p>
+          <p>
+            System created by Gustavo Amamia Kumagai. 
+            It is my first application using Next.JS, 
+            consuming the Aztro API. 
+          </p>
+          <p>See other projects at:</p>
+          <a href='https://portfolio-gustavo-amamia-kumagai.vercel.app/'>
+            portfolio-gustavo-amamia-kumagai.vercel.app
+          </a>
         </div>
-      </section>
-      <section id='contact'>
-        
       </section>
     </>
   )
