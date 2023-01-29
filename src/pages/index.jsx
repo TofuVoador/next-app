@@ -1,5 +1,5 @@
-import Header from '@/components/header/index'
-import styles from '@/styles/home.module.css'
+import Header from '../components/header'
+import styles from '../styles/home.module.css'
 import { useState } from 'react'
 
 export default function Home() {
