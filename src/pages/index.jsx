@@ -1,8 +1,9 @@
 import Header from '../components/header'
-import styles from '../styles/Home.module.css'
 import { useState } from 'react'
 
 export default function Home() {
+
+  const styles = require('../styles/home.module.css')
 
   const [aztro, setAztro] = useState({});
 
