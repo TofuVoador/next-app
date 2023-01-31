@@ -1,11 +1,20 @@
 import Header from '../components/header'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
 
+  const apiKey = '0690861960ddf284b4be7af74b5dfdd4';
   const styles = require('../styles/home.module.css')
 
   const [aztro, setAztro] = useState({});
+
+  const [city, setCity] = useState([]);
+  const [weather, setWeather] = useState([]);
+
+  const handleCityChange = (event) => {
+    setCity(event.target.value);
+    localStorage.setItem('city', event.target.value);
+  };
 
   const getAztro = (s) => {
     setAztro('')
@@ -17,10 +26,19 @@ export default function Home() {
     .then(() => document.getElementById('load').style.display = 'none')
   }
 
+  const updateWeather = () => {
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+    .then(resp => resp.json())
+    .then(dados => {
+      setWeather(dados.main)
+      console.log(dados.main)
+    })
+  }
+
   return (
     <>
       <Header/>
-      <section id='aztro'>
+      <section id='horoscope'>
         <div className={styles.selectSign}>
           <h1>Select your Sign</h1>
           <div className={styles.signOptions}>
@@ -52,6 +70,13 @@ export default function Home() {
           <div className={styles.description}>
             <p>{aztro.description}</p>
           </div>
+        </div>
+      </section>
+      <section id='weather' className={styles.weather}>
+        <input value={city} className={styles.selectCity} onChange={handleCityChange}/>
+        <button className={styles.searchCity} onClick={() => updateWeather()}>Get Weather</button>
+        <div className={styles.weatherStatus}>
+          <h1>Temperature: {Math.round(weather.temp - 273.15, -1)}°C</h1>
         </div>
       </section>
       <section id='about' className={styles.about}>
