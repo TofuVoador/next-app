@@ -1,10 +1,10 @@
 import Header from '../components/header'
 import { useEffect, useState } from 'react'
+import '../styles/Home.css';
 
 export default function Home() {
 
   const apiKey = '0690861960ddf284b4be7af74b5dfdd4';
-  const styles = require('../styles/Home.module.css')
 
   const [aztro, setAztro] = useState({});
 
@@ -54,9 +54,9 @@ export default function Home() {
     <>
       <Header/>
       <section id='horoscope'>
-        <div className={styles.selectSign}>
+        <div className='selectSign'>
           <h1>Select your Sign</h1>
-          <div className={styles.signOptions}>
+          <div className='signOptions'>
             <p onClick={() => {getAztro('aries')}}>Aries</p>
             <p onClick={() => {getAztro('taurus')}}>Taurus</p>
             <p onClick={() => {getAztro('gemini')}}>Gemini</p>
@@ -71,8 +71,8 @@ export default function Home() {
             <p onClick={() => {getAztro('pisces')}}>Pisces</p>
           </div>
         </div>
-        <div className={styles.horoscope}>
-          <div className={styles.date}>
+        <div className='horoscope'>
+          <div className='date'>
             <h1 id='load' style={{'display': 'none'}}>LOADING...</h1>
             <h1>{aztro.current_date}</h1>
           </div>
@@ -87,17 +87,17 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id='weather' className={styles.weather}>
-        <input value={city} className={styles.selectCity} onChange={handleCityChange}/>
-        <button className={styles.searchCity} onClick={() => updateWeather()}>Get Weather</button>
-        <div className={styles.weatherStatus}>
-          <h1 id='weatherError' className={styles.weatherError}></h1>
+      <section id='weather' className='weather'>
+        <input value={city} className='selectCity' onChange={handleCityChange}/>
+        <button className='searchCity' onClick={() => updateWeather()}>Get Weather</button>
+        <div className='weatherStatus'>
+          <h1 id='weatherError' className='weatherError'></h1>
           <h1>Weather: {weather.main}</h1>
           <h1>Temperature: {Math.round(temperature.temp - 273.15, -1)}°C</h1>
           <h1>Humidity: {temperature.humidity}%</h1>
         </div>
       </section>
-      <section id='about' className={styles.about}>
+      <section id='about' className='about'>
         <div>
           <h1>About</h1>
           <p>
