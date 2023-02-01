@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 export default function Home() {
 
   const apiKey = '0690861960ddf284b4be7af74b5dfdd4';
-  const styles = require('../styles/home.module.css')
+  const styles = require('../styles/Home.module.css')
 
   const [aztro, setAztro] = useState({});
 
